@@ -128,7 +128,7 @@
               <ul>
                 <li v-for="tab in tabs" :class="{'is-active': currentTab == tab.name}" @click="currenTab = tab.name">
                   <a>
-                    <span class="icon is-small"><i class="fas fa-clipboard-list"></i></span>
+                    <span class="icon is-small"><i :class="tab.icon"></i></span>
                     <span>{{tab.name}}</span>
                     <span>Current</span>
                   </a>
