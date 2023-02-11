@@ -19,10 +19,15 @@
           width="112" height="28">
 
       </a>
-      <div class="navbar-burger" :class="{'is-active': isMenuActive}"  @click = "isMenuActive = !isMenuActive"> <!-- {Object:value}-->
+      <div class="navbar-burger" :class="{'is-active': isMenuActive}"  @click = "isMenuActive = !isMenuActive"> 
+        <!-- Reminders for structure | {Object:value} | @event:"javascript" | -->
+        <!-- On this case ':class' adds another attribute for the class called 'is-active'-->
+        <!-- On this case "'is-active' receives the value in the variable "isMenuActive" from the script-->
+
         <span></span>
         <span></span>
         <span></span>
+        
       </div>
     </div>
 
@@ -130,27 +135,9 @@
                   <a>
                     <span class="icon is-small"><i :class="tab.icon"></i></span>
                     <span>{{tab.name}}</span>
-                    <span>Current</span>
                   </a>
                 </li>
-                <li>
-                  <a>
-                    <span class="icon is-small"><i class="fas fa-calendar-times"></i></span>
-                    <span>Completed</span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="icon is-small"><i class="fas fa-calendar-day"></i></span>
-                    <span>Upcoming</span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="icon is-small"><i class="fas fa-calendar"></i></span>
-                    <span>All</span>
-                  </a>
-                </li>
+           
               </ul>
             </div>
             <div class="panel-block">
@@ -353,7 +340,8 @@
     createApp({
       data() {
         return {
-          isMenuActive: false,
+          isMenuActive: false, //
+
           currentTab: 'All',
           tabs:[ {name: 'All', icon: 'fas fa-list'},
                   {name: 'Completed', icon: 'fas fa-check'},
