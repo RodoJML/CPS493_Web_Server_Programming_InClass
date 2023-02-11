@@ -23,15 +23,13 @@
         <!-- Reminders for structure | {Object:value} | @event:"javascript" | -->
         <!-- On this case ':class' adds another attribute for the class called 'is-active'-->
         <!-- On this case "'is-active' receives the value in the variable "isMenuActive" from the script-->
-
         <span></span>
         <span></span>
         <span></span>
-        
       </div>
     </div>
 
-    <div class="navbar-menu" :class="{'is-active': isMenuActive}"  > <!-- @event:"javascript"-->
+    <div class="navbar-menu" :class="{'is-active': isMenuActive}"  >
       <div class="navbar-start">
         <a class="navbar-item" href="https://bulma.io/">
           Home
@@ -41,27 +39,8 @@
             Docs
           </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-              Overview
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-              Modifiers
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-              Columns
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-              Layout
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              Form
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-              Elements
-            </a>
-            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-              Components
+            <a v-for="navItem in navItems" class="navbar-item" href = "navItem.link" >
+              {{navItem.name}} 
             </a>
           </div>
         </div>
@@ -126,20 +105,37 @@
             </footer>
           </div>
         </div>
+
         <div class="column is-half">
           <article class="panel">
 
             <div class="tabs is-boxed">
               <ul>
-                <li v-for="tab in tabs" :class="{'is-active': currentTab == tab.name}" @click="currenTab = tab.name">
+                <li v-for="tab in tabs" :class="{'is-active': currentTab == tab.name}" @click="currentTab = tab.name">
+                <!-- "v-for" is basically a for loop that iterates over a give array in this case tabs[] -->
+                <!-- ":class" whatever is next to this will be concatenated to the class of the element  -->
+                <!-- "{ }" remember anything in curly braces means that we are calling the javascript    -->
+                
+                <!-- The "is-active" attribute takes only "true" or "false"     -->
+                <!-- If "currentTab is equals to tab.name" then value is "true" -->
                   <a>
                     <span class="icon is-small"><i :class="tab.icon"></i></span>
                     <span>{{tab.name}}</span>
+
+                    <span class="tag is-danger icon" v-show="tab.name == 'Current'">
+                      {{ items.filter(item => !item.completed).length }}
+                    </span>
+
+                    <span class="tag is-success icon" v-show="tab.name == 'Completed'">
+                      {{ items.filter(item => item.completed).length }}
+                    </span>
+                    <!-- "v-show" is a conditional to display an element only if an statement is met -->
+                    <!-- The 'icon' will be shown only for tabs with name 'Current' and 'Completed'  -->
                   </a>
                 </li>
-           
               </ul>
             </div>
+
             <div class="panel-block">
               <p class="control has-icons-left">
                 <input class="input is-primary" type="text" placeholder="New Task">
@@ -148,26 +144,13 @@
                 </span>
               </p>
             </div>
-            <a class="panel-block">
-              <input type="checkbox" checked />
-              Make Bulma great again
+
+            <a v-for="item in items" class="panel-block">
+              <!-- v-for loop added here -->
+              <input type="checkbox" :checked="item.completed" />
+              {{item.name}}
             </a>
-            <a class="panel-block">
-              <input type="checkbox" />
-              Add some more features
-            </a>
-            <a class="panel-block">
-              <input type="checkbox" />
-              Make a github account
-            </a>
-            <a class="panel-block">
-              <input type="checkbox" />
-              Learn how to use github
-            </a>
-            <a class="panel-block">
-              <input type="checkbox" />
-              add a .gitignore file
-            </a>
+            
           </article>
 
           <article class="message is-danger">
@@ -340,16 +323,31 @@
     createApp({
       data() {
         return {
-          isMenuActive: false, //
+          isMenuActive: false,
 
           currentTab: 'All',
-          tabs:[ {name: 'All', icon: 'fas fa-list'},
-                  {name: 'Completed', icon: 'fas fa-check'},
-                  {name: 'Current', icon: 'fas fa-spinner'},
-                  {name: 'Overdue', icon: 'fas fa-fa-exclamation-triangle'},]
+
+          tabs:[{name: 'All',       icon: 'fas fa-list'},
+                {name: 'Completed', icon: 'fas fa-check'},
+                {name: 'Current',   icon: 'fas fa-spinner'},
+                {name: 'Overdue',   icon: 'fas fa-exclamation-triangle'},
+                {name: 'Trash',     icon: 'fas fa-trash'}],
+
+          items: [{ name: 'Learn Vue', completed: false },
+                  { name: 'Learn React', completed: false },
+                  { name: 'Learn Angular', completed: false },
+                  { name: 'Learn Svelte', completed: false },
+                  { name: 'Learn Ember', completed: false }],     
+
+          navItems:[{name: 'Google',  link: 'https://google.com'},
+                    {name: 'Apple',   link: 'https://apple.com'},
+                    {name: 'Yahoo',   link: 'https://yahoo.com'}],
+
+          
         }
       }
     }).mount('body') // Where we want to implement the View js
+    
   </script>
 
 </body>
