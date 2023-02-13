@@ -138,17 +138,27 @@
 
             <div class="panel-block">
               <p class="control has-icons-left">
-                <input class="input is-primary" type="text" placeholder="New Task">
+                <input class="input is-primary" type="text" placeholder="New Task" v-model="newTask" @keyPress.enter="addTask">
                 <span class="icon is-left">
                   <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                 </span>
               </p>
             </div>
 
-            <a v-for="item in items" class="panel-block">
+            <a v-for="(item, index) in items" :key="index" class="panel-block" v-show="shouldShow(item)">
               <!-- v-for loop added here -->
-              <input type="checkbox" :checked="item.completed" />
-              {{item.name}}
+              
+              <p class="control has-icons-right">
+                <input type="checkbox" v-model="item.completed" />
+                <!-- "v-model" not only reads but also writes the state of the checkbox component -->
+                <!-- When the box is checked or unchecked the value of "checked" actually changes -->
+                {{item.name}} {{index}}
+              </p>
+              
+              <span class="icon is-right" style="color:gainsboro" v-show="currentTab !== 'Trash'">
+                <i class="fas fa-trash" @click="deleteTask(index)"></i>
+              </span>
+
             </a>
             
           </article>
@@ -333,18 +343,43 @@
                 {name: 'Overdue',   icon: 'fas fa-exclamation-triangle'},
                 {name: 'Trash',     icon: 'fas fa-trash'}],
 
-          items: [{ name: 'Learn Vue', completed: false },
-                  { name: 'Learn React', completed: false },
-                  { name: 'Learn Angular', completed: false },
-                  { name: 'Learn Svelte', completed: false },
-                  { name: 'Learn Ember', completed: false }],     
+          items: [{ name: 'Learn Vue', completed: true, trash: false},
+                  { name: 'Learn React', completed: false, trash: false},
+                  { name: 'Learn Angular', completed: false, trash: false},
+                  { name: 'Learn Svelte', completed: false, trash: false},
+                  { name: 'Learn Ember', completed: false, trash: false}],     
 
           navItems:[{name: 'Google',  link: 'https://google.com'},
-                    {name: 'Apple',   link: 'https://apple.com'},
-                    {name: 'Yahoo',   link: 'https://yahoo.com'}],
+                    {name: 'Apple',   link: 'https://apple.com' },
+                    {name: 'Yahoo',   link: 'https://yahoo.com' }],
 
-          
+          newTask:'',
         }
+      },
+
+      methods: {
+
+        shouldShow(item){
+          // This method will return "true" or "false" to be used
+          // later within an "v-show" conditional.
+
+          if (this.currentTab === 'All' && !item.trash) return true
+          if (this.currentTab === 'Completed' && item.completed && !item.trash) return true
+          if (this.currentTab === 'Current' && !item.completed && !item.trash) return true
+          if (this.currentTab === 'Trash' && item.trash) return true
+          return false
+        },
+
+        addTask(){
+          this.items.push({name: this.newTask, completed: false})
+          this.newTask=''
+        },
+
+        deleteTask(i){
+          this.items[i].trash = true
+          console.log("Value here is" + i);
+        },
+        
       }
     }).mount('body') // Where we want to implement the View js
     
