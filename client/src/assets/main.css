@@ -1,3 +1,7 @@
+@import 'bulma/css/buma.css'
+
 /* @import './base.css';*/
 /* base.css was removed as it was not needed */
 /* Remember to delete all example files and keep just your boilerplate */
+
+/* if we start with @ we are importing from modules if we start with "." we import from local folder */
