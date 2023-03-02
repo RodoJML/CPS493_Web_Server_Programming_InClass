@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import {ref} from 'vue'
+import LoginBadge from './LoginBadge.vue'
+
 import { RouterLink } from 'vue-router'
 
-const isMenuActive = false;
+const isMenuActive = ref(false);
+
+function toggleMenu(){
+    // .value access the value directly instead of the object
+    // 90% you use ref, for all other you use reactive 
+    isMenuActive.value = !isMenuActive.value;
+    console.log({isMenuActive});
+}
+
 </script>
 
 
@@ -14,14 +25,14 @@ const isMenuActive = false;
                     <a class="navbar-item" href="https://bulma.io">
                         <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
                     </a>
-                    <span class="navbar-burger" data-target="navbarMenuHeroA">
+                    <span class="navbar-burger" :class ="{'is-active': isMenuActive}" @click="toggleMenu">
                         <span></span>
                         <span></span>
                         <span></span>
                     </span>
                 </div>
 
-                <div id="navbar" class="navbar-menu">
+                <div id="navbar" class="navbar-menu" :class = "{'is-active': isMenuActive}">
                     <div class="navbar-start">
 
                         <a class="navbar-item">
@@ -74,6 +85,8 @@ const isMenuActive = false;
                     </div>
 
                     <div class="navbar-end">
+
+                        <LoginBadge />
                         <span class="navbar-item">
                             <a class="button">
                                 <span class="icon">
