@@ -9,7 +9,7 @@ const session = useSession();
 
 <template>
 
-    <div class="navbar-item" v-if="user">
+    <div class="navbar-item" v-if="session.user">
         Welcome, {{ session.user?.name }}
         (<a @click=" session.user = null">Logout</a>)
     </div>
