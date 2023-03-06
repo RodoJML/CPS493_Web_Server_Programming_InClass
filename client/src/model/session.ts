@@ -14,6 +14,9 @@ import {reactive} from 'vue';
     email?: string;
     photo?: string;
     token?: string;
+
+    // Typescript is only for compile time
+    // Interface defines the attributes
  }
 
  export function useSession(){

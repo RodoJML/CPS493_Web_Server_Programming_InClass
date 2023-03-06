@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NavBar from './components/NavBar.vue';
+import Flyout from './components/Flyout.vue';
 </script>
 
 <template>
@@ -12,6 +13,8 @@ import NavBar from './components/NavBar.vue';
   </header>
 
   <RouterView />
+  <Flyout />
+  
 </template>
 
 <style scoped>
