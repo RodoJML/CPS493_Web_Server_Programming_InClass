@@ -46,7 +46,8 @@ const products = ref(getProducts());
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
 }
 .price{
-    
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 </style>
