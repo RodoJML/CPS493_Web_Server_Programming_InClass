@@ -38,4 +38,6 @@ export interface Product {
     images: string[];
 }
 
-export function getProducts()
+export function getProducts(): Product[] {
+    return data.products;
+}
