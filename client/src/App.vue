@@ -4,19 +4,15 @@ import Flyout from './components/Flyout.vue';
 </script>
 
 <template>
-  <header>
+  <NavBar />
 
-    <div class="wrapper">
-      <NavBar />
-    </div>
-    
-  </header>
+  <div class="container">
+    <RouterView />
+  </div>
 
-  <RouterView />
-  <Flyout />
-  
+  <Flyout>
+    <Cart />
+  </Flyout>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
