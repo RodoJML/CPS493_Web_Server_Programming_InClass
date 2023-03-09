@@ -3,7 +3,7 @@
 </script>
 
 <template>
-     <div class="flyout active">
+     <div class="flyout">
         <slot />
     </div>
 </template>

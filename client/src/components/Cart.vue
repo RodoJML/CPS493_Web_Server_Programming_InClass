@@ -47,14 +47,14 @@
     </div>
 </template>
 
-<style scoped> <\-- scoped means that this style is only applied to this component -->
-    .cart{
+<style scoped>
+    .cart {
         margin: 5px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
-    .cart-item{
+    .cart-item {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -66,12 +66,12 @@
         background-color: lavenderblush;
       
     }
-    .cart-item img{
+    .cart-item img {
         width: 100px;
         height: 100px;
     }
-    
-    small{
+
+    small {
         font-size: 0.5em;
     }
 
