@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import {ref} from 'vue'
+import {ref} from 'vue';
 import {getProducts, type Product} from '../model/products'
+
 const products = ref(getProducts());
 
 </script>
 
+
 <template>
     <div>
-        <h1 class="title">These will be the products</h1>
-
-        <h2> If you got here you are logged in</h2>
+        <h1 class="title">What would you like to buy?</h1>
 
         <div class="product-list">
             <div class="product" v-for="product in products" :key="product.id">
-                <img :src="product.thumbnail" alt="productTitle"/>
+                <img :src="product.thumbnail" :alt="product.title"/>
                 <h3>{{ product.title }}</h3>
                 <p> {{ product.description }}</p>
                 <p>
@@ -21,7 +21,6 @@ const products = ref(getProducts());
                     <i class="price">{{ product.price }}</i>
                 </p>
                 <button class="button is-primary"> + </button>
-
             </div>
         </div>
     </div>
@@ -38,12 +37,13 @@ const products = ref(getProducts());
 }
 
 .product{
-    width: 30rem;
-    padding: 1rem;
+    flex-basis: 12rem;
+    flex-grow: 1;
+    padding: .5rem;
     margin: 1rem;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
 }
 .price{
     
