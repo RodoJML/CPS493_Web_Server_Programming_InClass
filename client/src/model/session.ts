@@ -33,7 +33,7 @@ export function login() {
 export function useLogout() {
    const router = useRouter(); // Compisition functions usually start with use
 
-   return {
+   return function(){
       console.log({ router });
       session.user = null;
       router.push('/login');
