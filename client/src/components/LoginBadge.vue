@@ -1,9 +1,9 @@
-
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useSession, login, useLogout} from '@/model/session';
-const session = useSession();
-const logout = useLogout();
+    import { ref } from 'vue';
+    import { useSession, login, useLogout} from '@/model/session';
+    const session = useSession();
+    const logout = useLogout();
+
 
 </script>
 
@@ -28,4 +28,6 @@ const logout = useLogout();
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
-     <div class="flyout">
+    <div class="flyout">
         <slot />
     </div>
 </template>
+
 
 <style scoped>
     .flyout {
@@ -18,8 +18,9 @@
         background-color: white;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
         transition: right 0.5s ease-in-out;
+        overflow-y: scroll;
     }
-    .flyout.active {
+    .flyout.is-active {
         right: 0;
     }
     .flyout:hover {
