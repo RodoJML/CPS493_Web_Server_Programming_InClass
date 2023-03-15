@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import {getProducts, type Product} from '../model/products'
+import { addToCart } from '@/model/cart';
 
 const products = ref(getProducts());
 
@@ -28,26 +29,24 @@ const products = ref(getProducts());
 
 
 <style scoped>
-
-.product-list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background-color: aliceblue;
-}
-
-.product{
-    flex-basis: 12rem;
-    flex-grow: 1;
-    padding: .5rem;
-    margin: 1rem;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
-}
-.price{
-    font-size: 1.5rem;
-    font-weight: bold;
-}
+.product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: aliceblue;
+    }
+    .product {
+        flex-basis: 12rem;
+        flex-grow: 1;
+        padding: .5rem;
+        margin: 1rem;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    }
+    .price {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 
 </style>
