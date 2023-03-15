@@ -1,35 +1,38 @@
 <script setup lang="ts">
-import {ref} from 'vue';
-import {getProducts, type Product} from '../model/products'
-import { addToCart } from '@/model/cart';
-
-const products = ref(getProducts());
-
+import { ref } from 'vue';
+import { getProducts, type Product } from '../model/products'
+import { addToCart } from '../model/cart';
+const products = ref( getProducts());
 </script>
-
 
 <template>
     <div>
-        <h1 class="title">What would you like to buy?</h1>
+        <h1 class="title">
+            What would you like to buy?
+        </h1>
+
 
         <div class="product-list">
             <div class="product" v-for="product in products" :key="product.id">
-                <img :src="product.thumbnail" :alt="product.title"/>
+                <img :src="product.thumbnail" :alt="product.title" />
                 <h3>{{ product.title }}</h3>
-                <p> {{ product.description }}</p>
+                <p>{{ product.description }}</p>
                 <p>
                     <span>$</span>
-                    <i class="price">{{ product.price }}</i>
+                    <i class="price">
+                        {{ product.price }}
+                    </i>
                 </p>
-                <button class="button is-primary"> + </button>
+                <button class="button is-primary" @click="addToCart(product)">+</button>
             </div>
         </div>
+
     </div>
 </template>
 
 
 <style scoped>
-.product-list {
+    .product-list {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -48,5 +51,4 @@ const products = ref(getProducts());
         font-size: 1.5rem;
         font-weight: bold;
     }
-
 </style>
