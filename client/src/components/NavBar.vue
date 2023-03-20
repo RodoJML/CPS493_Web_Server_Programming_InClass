@@ -31,7 +31,7 @@ function toggleMenu() {
 
             <div class="navbar-menu" :class="{ 'is-active': isMenuActive }">
                 <div class="navbar-start">
-
+co
                     <RouterLink to="/" class="navbar-item">Home</RouterLink>
                     <RouterLink to="/about" class="navbar-item">About</RouterLink>
                     <RouterLink to="/products" class="navbar-item">Products</RouterLink>

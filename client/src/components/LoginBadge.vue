@@ -3,8 +3,6 @@
     import { useSession, login, useLogout} from '@/model/session';
     const session = useSession();
     const logout = useLogout();
-
-
 </script>
 
 <template>
