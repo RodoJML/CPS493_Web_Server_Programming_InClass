@@ -1,0 +1,17 @@
+###
+GET https://dummyjson.com/products/categories
+
+###
+GET https://dummyjson.com/products?limit=10&skip=10&select=title,price
+
+###
+POST https://dummyjson.com/products/add
+Content-Type: application/json
+
+{
+  "title": "Product 1",
+  "price": 100
+}
+
+###
+GET http://localhost:3000/
