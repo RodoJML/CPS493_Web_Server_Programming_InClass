@@ -2,7 +2,14 @@
 import { ref } from 'vue';
 import { getProducts, type Product } from '../model/products'
 import { addToCart } from '../model/cart';
-const products = ref( getProducts());
+
+const products = ref<Product[]>([]);
+
+// This below will be done after all website is render 
+getProducts().then((whateverName) => {
+    products.value = whateverName;
+});
+
 </script>
 
 <template>
@@ -13,6 +20,8 @@ const products = ref( getProducts());
 
 
         <div class="product-list">
+            <progress v-if="!products.length" class="progress is-large is-info" max="100">60%</progress>
+            
             <div class="product" v-for="product in products" :key="product.id">
                 <img :src="product.thumbnail" :alt="product.title" />
                 <h3>{{ product.title }}</h3>

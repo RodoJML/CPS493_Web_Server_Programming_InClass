@@ -36,11 +36,11 @@ app
     .use(express.static(path.join(__dirname, '../client/dist')))
     // .use(express.static()) is a built-in middleware function in Express. It serves static files and is based on serve-static.
     .use((req,res,next) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      res.header('Access-Control-Allow-Origin', '*')
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
       // Anytime 
-      next();
+      next()
       // If you dont call next app will hang... 
     })
 

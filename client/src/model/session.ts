@@ -1,8 +1,14 @@
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import * as myFetch from './myFetch';
 
 const session = reactive({
    user: null as User | null,
+   isLoading: false,
+   messages: [] as {
+      msg: string[],
+      type: 'success' | 'error'
+   }[],
    // Typescrip is only for compile time, not when running. 
 })
 
@@ -24,6 +30,20 @@ export function useSession() {
    return session;
 }
 
+export function api(url: string) {
+   session.isLoading = true;
+   return myFetch.api(url)
+      .catch(
+         err => {
+            console.error(err);
+            session.messages.push({ msg: err.message ?? JSON.stringify(err), type: 'error', })
+         }
+      )
+      .finally(() => {
+         session.isLoading = false;
+      })
+}
+
 export function login() {
    session.user = {
       name: "John Doe"
@@ -33,7 +53,7 @@ export function login() {
 export function useLogout() {
    const router = useRouter(); // Compisition functions usually start with use
 
-   return function(){
+   return function () {
       console.log({ router });
       session.user = null;
       router.push('/login');
