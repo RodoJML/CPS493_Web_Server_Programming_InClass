@@ -5,6 +5,7 @@
 // 1. MODULES IMPORTS
 const express = require('express')
 const path = require('path')
+  // Points to this path in this folder... 
   // 'path' provides utilities for working with file and directory paths.
   // 'express' contains all exports from express, to access all its functions.
 
@@ -20,7 +21,6 @@ const app = express();
   // The app object is the main object that we use to interact with express
 
 
-
 // 3. SOCKET
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
@@ -31,10 +31,18 @@ const port = process.env.PORT || 3000;
 // Middleware
 app
     .use(express.json())
+    // This is Critical for POST and PUT requests, otherwise req.body will be undefined
     // .use(express.jason()) is a method inbuilt in express to recognize the incoming Request Object as a JSON Object.
     .use(express.static(path.join(__dirname, '../client/dist')))
     // .use(express.static()) is a built-in middleware function in Express. It serves static files and is based on serve-static.
-
+    .use((req,res,next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      // Anytime 
+      next();
+      // If you dont call next app will hang... 
+    })
 
 // Actions
 app
@@ -43,7 +51,8 @@ app
     .use('/api/v1/jokes', jokes)
 
 // Catch all
-app.get('*', (req, res) => {res.sendFile(path.join(__dirname, '../client/dist/index.html'))})
+app
+    .get('*', (req, res) => {res.sendFile(path.join(__dirname, '../client/dist/index.html'))})
 
 console.log('1: About to start server')
 

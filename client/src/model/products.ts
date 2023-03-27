@@ -1,6 +1,8 @@
 /*Model is what helps you get the data, download from server*/
 
 import data from "../data/products.json";
+import {api} from "../model/myFetch";
+
 /*If there are no default export you have to use { } when importing */
 /*If there name export you have to use { } */
 
@@ -39,5 +41,6 @@ export interface Product {
 }
 
 export function getProducts(): Product[] {
+    api('products').then(res => console.log(data));
     return data.products;
 }
