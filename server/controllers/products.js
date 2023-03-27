@@ -26,7 +26,6 @@ router
             // 'req' is the request object
             // 'res' is the response object
                 // 'res.send()' is a function that sends a response to the client
-
     .get('/', (req, res) => {
         const list = model.getProducts();
         res.send(list)
