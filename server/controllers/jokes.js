@@ -5,7 +5,7 @@
 // 2. express 
 // Contains all exports from express
 // Any function from express is now available here
-const express = require('express')
+const express = require('express');
 
 // 3. router
 // The router object is a subset of the express object
