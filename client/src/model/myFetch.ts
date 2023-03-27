@@ -1,6 +1,4 @@
-
-
-const API_URL = 'http://localhost:3000/api/V1/';
+const API_URL = 'http://localhost:3000/api/v1/';
 // Depending on client or servver need to change this 
 // Create models and use these functions within
 
