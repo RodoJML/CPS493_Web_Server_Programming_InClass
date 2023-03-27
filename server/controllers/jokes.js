@@ -21,11 +21,11 @@ app
 
                 const joke = fetch('https://v2.jokeapi.dev/joke/Any')
                 .then(response => response.json())
-                .then(x=>{
+                .then(x => {
                     if(x.safe == false) {
                         throw new Error('Not safe for work');
                     }
-
+                    
                     res.send(x.joke)
                     console.log('2: that was the joke')              
                 })
