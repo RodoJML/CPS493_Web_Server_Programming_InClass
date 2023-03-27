@@ -8,16 +8,18 @@ const path = require('path')
   // 'path' provides utilities for working with file and directory paths.
   // 'express' contains all exports from express, to access all its functions.
 
-const app = express();
-  // The app object is a subset of the express object
-  // express() is a function that returns an app object
-  // The app object is the main object that we use to interact with express
-
 // 2. CONTROLLERS IMPORTS
 const products = require('./controllers/products')
 const jokes = require('./controllers/jokes');
   // Importing all corresponding controllers
   // Contains all exports from products
+
+const app = express();
+  // The app object is a subset of the express object
+  // express() is a function that returns an app object
+  // The app object is the main object that we use to interact with express
+
+
 
 // 3. SOCKET
 const hostname = '127.0.0.1';
@@ -36,22 +38,15 @@ app
 
 // Actions
 app
-    .get('/api/v1/', (req, res) => {
-        res.send('Hello World! From Express')
-    })
+    .get('/api/v1/', (req, res) => {res.send('Hello World! From Express')})
     .use('/api/v1/products', products)
     .use('/api/v1/jokes', jokes)
 
 // Catch all
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'))
-})
-
+app.get('*', (req, res) => {res.sendFile(path.join(__dirname, '../client/dist/index.html'))})
 
 console.log('1: About to start server')
 
-app.listen(port, () => 
-  console.log(`2: Server running at http://${hostname}:${port}/`)
-);
+app.listen(port, () => console.log(`2: Server running at http://${hostname}:${port}/`));
 
 console.log('3: Asked server to start')
