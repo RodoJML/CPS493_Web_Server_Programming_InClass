@@ -72,3 +72,11 @@ router
     // module.exports is an object that is available in every JS file in the Node application
     // module.exports is what is returned as the result of a require call
     // module.exports is what is assigned to the exports variable
+
+    /*  Ways to pass information to the server:
+    1. Query String Parameters
+    2. Route Parameters
+    3. Request Body
+    4. Request Headers
+    5. Cookies
+*/

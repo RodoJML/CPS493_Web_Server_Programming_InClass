@@ -29,7 +29,9 @@ const port = process.env.PORT || 3000;
 // Middleware
 app
     .use(express.json())
+    // .use(express.jason()) is a method inbuilt in express to recognize the incoming Request Object as a JSON Object.
     .use(express.static(path.join(__dirname, '../client/dist')))
+    // .use(express.static()) is a built-in middleware function in Express. It serves static files and is based on serve-static.
 
 
 // Actions
@@ -46,7 +48,10 @@ app.get('*', (req, res) => {
 })
 
 
+console.log('1: About to start server')
 
 app.listen(port, () => 
-  console.log(`Server running at http://${hostname}:${port}/`)
+  console.log(`2: Server running at http://${hostname}:${port}/`)
 );
+
+console.log('3: Asked server to start')
