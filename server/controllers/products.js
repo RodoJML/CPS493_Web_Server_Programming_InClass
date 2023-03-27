@@ -2,16 +2,17 @@
 // All express functions are available in the controller
 // The controller is a JS file that contains all the routes for a specific resource
 
-    // 2. router
-    // The router object is a subset of the express object
-    // express.Router() is a function that returns a router object
-    const router = express.Router();
-
-    // 3. express 
+    // 2. express 
     // Contains all exports from express
     // Any function from express is now available here
     const express = require('express');
 
+    // 3. router
+    // The router object is a subset of the express object
+    // express.Router() is a function that returns a router object
+    const router = express.Router();
+
+    // 4. model
     const model = require('../models/products');
 
 router
