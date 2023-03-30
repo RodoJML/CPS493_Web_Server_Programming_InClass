@@ -35,6 +35,8 @@ app
     // .use(express.jason()) is a method inbuilt in express to recognize the incoming Request Object as a JSON Object.
     .use(express.static(path.join(__dirname, '../client/dist')))
     // .use(express.static()) is a built-in middleware function in Express. It serves static files and is based on serve-static.
+    
+    // THIS IS COURSE.... We are alright running scripts from other servers other than ours...
     .use((req,res,next) => {
       res.header('Access-Control-Allow-Origin', '*')
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
