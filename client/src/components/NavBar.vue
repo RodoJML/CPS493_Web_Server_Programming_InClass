@@ -5,6 +5,8 @@ import { quantity } from '../model/cart';
 import Cart from './Cart.vue';
 import Flyout from './Flyout.vue';
 import LoginBadge from './LoginBadge.vue';
+import Notifications from './Notifications.vue';
+
 const isMenuActive = ref(false);
 const isCartActive = ref(false);
 function toggleMenu() {
@@ -82,6 +84,7 @@ co
                     <LoginBadge />
 
                     <div class="navbar-item">
+                        <Notifications />
                         <div class="field is-grouped">
                             <p class="control">
                                 <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet"
