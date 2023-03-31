@@ -7,7 +7,7 @@ const session = reactive({
    isLoading: false,
    messages: [] as {
       msg: string[],
-      type: 'success' | 'error'
+      type: 'success' | 'danger' | 'warning' | 'info'
    }[],
    // Typescrip is only for compile time, not when running. 
 })
@@ -27,6 +27,8 @@ interface User {
 }
 
 export function useSession() {
+
+   session.push
    return session;
 }
 
