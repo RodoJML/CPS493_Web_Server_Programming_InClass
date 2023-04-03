@@ -35,7 +35,7 @@ export function api(url: string) {
    return myFetch.api(url)
       .catch(
          err => {
-            console.error(err);
+            console.error({err});
             session.messages.push({ msg: err.message ?? JSON.stringify(err), type: "danger", })
          }
       )
