@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSession } from "@/model/session"
+import { useSession, deleteMessage } from "@/model/session"
 import { ref    } from "vue";
 const session = useSession();
 const isActive = ref(false);
@@ -13,8 +13,8 @@ const isActive = ref(false);
             </span>
         </button>
         <div class="notification-list" v-show="isActive">
-            <div v-for="msg in session.messages" :class="`notification is-${msg.type}`">
-                <button class="delete"></button>
+            <div v-for="msg, i in session.messages" :class="`notification is-${msg.type}`">
+                <button class="delete" @click="deleteMessage(i)"></button>
                 {{  msg.msg }}
             </div>
         </div>
@@ -30,25 +30,16 @@ const isActive = ref(false);
         margin-top: 5px;
         width: 300px;
         background-color: white;
-        border-radius: 5px;
-        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         z-index: 100;
+        min-height: 300px;
+        max-height: calc(100vh - 100px);
         overflow-y: auto;
     }
-    .notification-list.active {
-        display: block;
-    }
-    .notification {
-        padding: 1rem;
-        border-bottom: 1px solid #eee;
-    }
-    .notification:last-child {
-        border-bottom: none;
-    }
-    .notification .delete {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
+    .notification-list .notification {
+        margin: 5px;
     }
 
 </style>

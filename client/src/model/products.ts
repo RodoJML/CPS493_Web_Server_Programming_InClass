@@ -2,7 +2,7 @@
 // import data from "../data/products.json";
 
 import {api} from "./session";
-
+import type { DataListEnvelope } from "./myFetch";
 /*If there are no default export you have to use { } when importing */
 /*If there name export you have to use { } */
 
@@ -40,7 +40,7 @@ export interface Product {
     images: string[];
 }
 
-export function getProducts(): Promise<Product[]> {
+export function getProducts(): Promise<DataListEnvelope<Product>> {
 
     return api('products')
     // This line runs first than apiproducts, because is async

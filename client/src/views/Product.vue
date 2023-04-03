@@ -7,8 +7,7 @@ const products = ref<Product[]>([]);
 
 // This below will be done after all website is render 
 getProducts().then((whateverName) => {
-    products.value = whateverName;
-    console.log(whateverName);
+    products.value = whateverName.data;
 });
 
 </script>

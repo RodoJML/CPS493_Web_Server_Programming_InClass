@@ -73,6 +73,7 @@ co
                 <div class="navbar-end">
 
                     <div class="navbar-item">
+                        <Notifications />
                         <button class="button  is-primary" :class="{ 'is-active': isCartActive }"
                             @click="isCartActive = !isCartActive">
                             <span class="icon">

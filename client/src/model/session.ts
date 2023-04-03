@@ -6,7 +6,7 @@ const session = reactive({
    user: null as User | null,
    isLoading: false,
    messages: [] as {
-      msg: string[],
+      msg: string,
       type: 'success' | 'danger' | 'warning' | 'info'
    }[],
    // Typescrip is only for compile time, not when running. 
@@ -27,8 +27,6 @@ interface User {
 }
 
 export function useSession() {
-
-   session.push
    return session;
 }
 
@@ -38,7 +36,7 @@ export function api(url: string) {
       .catch(
          err => {
             console.error(err);
-            session.messages.push({ msg: err.message ?? JSON.stringify(err), type: 'error', })
+            session.messages.push({ msg: err.message ?? JSON.stringify(err), type: "danger", })
          }
       )
       .finally(() => {
@@ -60,4 +58,13 @@ export function useLogout() {
       session.user = null;
       router.push('/login');
    }
+}
+
+export function addMessage(msg: string, type: 'success' | 'danger' | 'warning' | 'info') {
+   console.log({msg, type});
+   session.messages.push({ msg, type });
+}
+
+export function deleteMessage(index: number){
+   session.messages.splice(index, 1);
 }
