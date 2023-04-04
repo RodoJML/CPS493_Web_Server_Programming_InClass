@@ -44,28 +44,11 @@ co
                             Docs
                         </a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+                            <RouterLink class="navbar-item" href="https://bulma.io/documentation/overview/start/">
                                 Overview
-                            </a>
-                            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-                                Modifiers
-                            </a>
-                            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-                                Columns
-                            </a>
-                            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-                                Layout
-                            </a>
-                            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-                                Form
-                            </a>
-                            <hr class="navbar-divider">
-                            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-                                Elements
-                            </a>
-                            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-                                Components
-                            </a>
+                            </RouterLink>
+
+                           
                         </div>
                     </div>
                 </div>

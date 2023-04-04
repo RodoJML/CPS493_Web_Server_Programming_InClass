@@ -13,7 +13,8 @@ const router = createRouter({
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     {path: '/products', name: 'products', component: ProductsVue, beforeEnter: secureRoute},
-    {path: '/login', name: 'login', component: Login}
+    {path: '/login', name: 'login', component: Login},
+    {path: 'admin/products', name: 'admin-products', component: () => import('../views/admin/ProductsList.vue'), beforeEnter: secureRoute},
   ]
 })
 
