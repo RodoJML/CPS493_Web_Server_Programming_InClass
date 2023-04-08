@@ -15,6 +15,7 @@ const router = createRouter({
     {path: '/products', name: 'products', component: ProductsVue, beforeEnter: secureRoute},
     {path: '/login', name: 'login', component: Login},
     {path: 'admin/products', name: 'admin-products', component: () => import('../views/admin/ProductsList.vue'), beforeEnter: secureRoute},
+    {path: '/admin/products/edit/:id?', name: 'admin-products-edit', component: () => import('../views/admin/ProductEdit.vue'), beforeEnter: secureRoute },
   ]
 })
 

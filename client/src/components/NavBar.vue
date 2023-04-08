@@ -33,7 +33,7 @@ function toggleMenu() {
 
             <div class="navbar-menu" :class="{ 'is-active': isMenuActive }">
                 <div class="navbar-start">
-co
+                    co
                     <RouterLink to="/" class="navbar-item">Home</RouterLink>
                     <RouterLink to="/about" class="navbar-item">About</RouterLink>
                     <RouterLink to="/products" class="navbar-item">Products</RouterLink>
@@ -41,14 +41,16 @@ co
 
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-                            Docs
+                            Admin
                         </a>
                         <div class="navbar-dropdown">
-                            <RouterLink class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-                                Overview
+                            <RouterLink to="admin/products" class="navbar-item">
+                                Products
                             </RouterLink>
 
-                           
+                            <RouterLink to="/admin/users" class="navbar-item">
+                                Users
+                            </RouterLink>
                         </div>
                     </div>
                 </div>
@@ -68,7 +70,6 @@ co
                     <LoginBadge />
 
                     <div class="navbar-item">
-                        <Notifications />
                         <div class="field is-grouped">
                             <p class="control">
                                 <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet"

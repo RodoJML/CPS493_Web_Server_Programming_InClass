@@ -1,20 +1,38 @@
-// Centralized 
 const API_URL = 'http://localhost:3000/api/v1/';
-// Depending on client or servver need to change this 
+// Centralized 
+// Depending on client or server need to change this 
 // Create models and use these functions within
 
-export function rest(url: string) {
-    return fetch(url)
-        .then(res => res.ok 
-            ? res.json() 
-            : res.json().then(x=> { throw({ ...x, message: x.error }) } ) );
+// This is a generic function that can be used to call any REST API
+export function rest(url: string, data?: any, method?: string, headers?: any) {
+    
+    // All is returned here is the promise from fetch
+    return fetch
+        (
+            //Fetch Parameter 1: URL
+            url,
 
-            // ... adds to the external object all attributes from x
+            //Fetch Parameter 2: Options Object
+            {
+                method: method ?? (data ? 'POST' : 'GET'),
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    ...headers,
+                },
+                body: data ? JSON.stringify(data) : undefined,
+            },
+        )
+        .then(res => res.ok
+            // Fetch returns a promise, so we can chain .then() calls
+            ? res.json()
+            : res.json().then(x => { throw ({ ...x, message: x.error }) }));
+}
 
-} // wrapper for fetch
-
-export function api(url: string) {
-    return rest(API_URL + url);
+// This is a wrapper function that can be used to call any REST API
+// This jus basically appends API_URL to it
+export function api(url: string, data?: any, method?: string, headers?: any) {
+    return rest(API_URL + url, data, method, headers);
 }
 
 export type DataEnvelope<T> = {
@@ -27,5 +45,4 @@ export type DataListEnvelope<T> = DataEnvelope<T[]> & {
     total: number,
 }
 
-// wrapper for fetch, appends URL to it
-// when access just have tpo put the name of the controller 
+// when access just have to put the name of the controller 

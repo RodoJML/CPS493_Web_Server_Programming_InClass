@@ -1,8 +1,13 @@
 <script setup lang="ts">
     import { ref } from 'vue';
     import { useSession, login, useLogout} from '@/model/session';
+    
     const session = useSession();
     const logout = useLogout();
+
+    function logout2(){
+        logout();
+    }
 </script>
 
 <template>

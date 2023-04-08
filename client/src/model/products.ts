@@ -1,8 +1,8 @@
 /*Model is what helps you get the data, download from server*/
 // import data from "../data/products.json";
 
-import {api} from "./session";
-import type { DataListEnvelope } from "./myFetch";
+import { api } from "./session";
+import type { DataEnvelope, DataListEnvelope } from "./myFetch";
 /*If there are no default export you have to use { } when importing */
 /*If there name export you have to use { } */
 
@@ -41,8 +41,15 @@ export interface Product {
 }
 
 export function getProducts(): Promise<DataListEnvelope<Product>> {
-
     return api('products')
     // This line runs first than apiproducts, because is async
     // return data.products;
+}
+
+export function getProduct(id: number): Promise<DataEnvelope<Product>> {
+    return api(`products/${id}`);
+}
+
+export function createProduct(product: Product): Promise<DataEnvelope<Product>> {
+    return api('products', product)
 }
