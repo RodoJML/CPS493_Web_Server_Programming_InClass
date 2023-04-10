@@ -58,8 +58,7 @@ app
 
 // Error handling
 // It has 4 parameter 
-app
-  .use((err, req, res, next) => {
+app.use((err, req, res, next) => {
     console.error(err);
     const msg = {
       status: err.code || 500,
