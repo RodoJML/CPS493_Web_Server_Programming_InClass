@@ -37,7 +37,7 @@ function save() {
         <div class="field">
             <label class="label">Title</label>
             <div class="control">
-                <input type="text" class="input" placeholder="Title" v-model="product.title">
+                <input class="input" type="text" placeholder="Title" v-model="product.title">
             </div>
         </div>
 
@@ -51,14 +51,21 @@ function save() {
         <div class="field">
             <label class="label">Price</label>
             <div class="control">
-                <input type="number" class="input" placeholder="Price" v-model="product.price">
+                <input class="input" type="number" placeholder="Price" v-model="product.price">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Category</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Category" v-model="product.category">
             </div>
         </div>
 
         <div class="field">
             <label class="label">Brand</label>
             <div class="control">
-                <input type="text" class="input" placeholder="Brand" v-model="product.brand">
+                <input class="input" type="text" placeholder="Brand" v-model="product.brand">
             </div>
         </div>
 
@@ -77,8 +84,9 @@ function save() {
                 <button class="button is-link is-light">Cancel</button>
             </div>
         </div>
-
     </form>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
