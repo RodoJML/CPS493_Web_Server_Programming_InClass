@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api/v1/';
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api/v1/';
 // Centralized 
 // Depending on client or server need to change this 
 // Create models and use these functions within
@@ -36,7 +36,7 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
 }
 
 export type DataEnvelope<T> = {
-    data: T;
+    data: T,
     isSuccess: boolean,
     error?: string,
 }

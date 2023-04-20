@@ -9,6 +9,7 @@ const session = reactive({
       msg: string,
       type: 'success' | 'danger' | 'warning' | 'info'
    }[],
+   redirectUrl: null as string | null,
    // Typescrip is only for compile time, not when running. 
 })
 
@@ -45,8 +46,16 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
 }
 
 export function login() {
-   session.user = {
-      name: "John Doe"
+   const router = useRouter();
+
+   return function() {
+      session.user = {
+         name: "John Doe"
+      }
+
+      // ?? means if null, use the other value
+      router.push(session.redirectUrl ?? '/');
+      session.redirectUrl = null;
    }
 }
 
