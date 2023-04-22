@@ -4,6 +4,7 @@
     
     const session = useSession();
     const logout = useLogout();
+    const uselogin = login();
 
     function logout2(){
         logout();
@@ -13,7 +14,7 @@
 <template>
     <div class="navbar-item" v-if="session.user">
         Welcome, {{ session.user.name }}
-        (<a @click="logout">logout</a>)
+        (<a @click="logout2()">logout</a>)
     </div>
     <div class="navbar-item" v-else>
         <a class="button is-primary" @click="login">

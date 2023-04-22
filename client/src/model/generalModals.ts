@@ -1,7 +1,6 @@
 import { reactive } from 'vue';
 
 export const state = reactive({
-
     isModalOpen: false,
     message: '',
     title: '',
