@@ -13,8 +13,8 @@ getProducts().then((whateverName) => {
 
 function deleteProduct(id: number) {
     confirm('Are you sure you want to detele this', "Question",)
-    .then(() => {console.log('delete: ' + id);})
-    .catch(() => {console.log('didn\'t do it to: ' + id);})
+        .then(() => { console.log('delete: ' + id); })
+        .catch(() => { console.log('didn\'t do it to: ' + id); })
 }
 
 </script>
@@ -53,9 +53,17 @@ function deleteProduct(id: number) {
                     <td>{{ product.category }} / {{ product.brand }}</td>
                     <td>{{ product.stock }}</td>
                     <td>
-                        <router-link></router-link>
-                        <button class="button is-primary">Edit</button>
-                        <button class="button is-danger">Delete</button>
+                        <router-link :to="'/admin/products/edit/' + product.id" class="button">
+                            <div class="icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                        </router-link>
+
+                        <button class="button" @click="deleteProduct(product.id)">
+                            <div class="icon">
+                                <i class="fas fa-trash"></i>
+                            </div>
+                        </button>
                     </td>
                 </tr>
             </tbody>

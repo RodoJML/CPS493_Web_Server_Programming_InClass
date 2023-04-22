@@ -30,6 +30,10 @@ function secureRoute(to: RouteLocationNormalized, from: RouteLocationNormalized,
     next()
     // 
   } else {
+    // The followin is part of the deeplinking 
+    if(!session.redirectUrl && to.path != '/login'){
+      session.redirectUrl = to.fullPath;
+    }
     next('/login')
   }
 }

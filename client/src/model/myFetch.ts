@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api/v1/';
+const API_URL = import.meta.env.VITE_API_URL ?? '/api/v1/';
 // Centralized 
 // Depending on client or server need to change this 
 // Create models and use these functions within
