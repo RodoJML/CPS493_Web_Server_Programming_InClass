@@ -1,43 +1,44 @@
 <script setup lang="ts">
 
-    const props = defineProps<{
-        title?: string;
-        isOpen: boolean;
-    }>();
+const props = defineProps<{
+    title?: string;
+    body?: string;
+    isOpen: boolean;
+}>();
 
-    const emit = defineEmits<{
-        (e: 'update:isOpen', value: boolean): void;
-    }>();
+const emit = defineEmits<{
+    (e: 'update:isOpen', value: boolean): void;
+}>();
 
 </script>
 
 <template>
-    <div class="modal" :class="{ 'is-active' : props.isOpen }">
+    <div class="modal" :class="{ 'is-active': props.isOpen }">
         <div class="modal-background"></div>
 
         <div class="modal-card">
+
             <header class="modal-card-head">
-                <slot class="header">
-                    <p class="modal-card-title">{{ props.title }}</p>
-                    <button class="delete" aria-label="close"
-                    @click="emit('update:isOpen', false)"></button>
-                </slot>
+
+                <p class="modal-card-title">
+                    <slot name="header">{{ props.title }}</slot>
+                </p>
+
+                <button class="delete" aria-label="close" @click="emit('update:isOpen', false)"></button>
+
             </header>
 
             <section class="modal-card-body">
-                <slot></slot>
+                <slot name="body1">{{ props.body }}</slot>
             </section>
 
             <footer class="modal-card-foot">
-                <slot class="footer">
-                    <button class="button is-success">Save changes</button>
-                    <button class="button">Cancel</button>
-                </slot>
+                <button class="button is-success">Save changes</button>
+                <button class="button">Cancel</button>
             </footer>
         </div>
+
     </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
