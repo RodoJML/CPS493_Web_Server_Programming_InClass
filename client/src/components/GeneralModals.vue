@@ -9,8 +9,8 @@
         <h1 class="title">{{ state.message }}</h1>
         // Whats the pound for? 
         <template #footer>
-            <button class="button is-success">Save</button>
-            <button class="button">Cancel</button>
+            <button class="button is-success" @click="state.resolve">Save</button>
+            <button class="button" @click="state.reject">Cancel</button>
         </template>
     </Modal>
 </template>

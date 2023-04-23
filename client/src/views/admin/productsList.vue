@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { getProducts, type Product } from '../../model/products'
-import GenModals from '../../components/GenModals.vue';
+import GenModals from '../../components/GeneralModals.vue';
 import { confirm } from '../../model/generalModals'
 
 const products = ref<Product[]>([]);
