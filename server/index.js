@@ -3,6 +3,7 @@
 // This file is the file that is run when we run the command 'npm run dev'
 
 // 1. MODULES IMPORTS
+require('dotenv').config();
 const express = require('express')
 const path = require('path')
 // Points to this path in this folder... 
