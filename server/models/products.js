@@ -19,7 +19,7 @@ async function collection(){
 // }
 // look how each function was changed to a more general function so it can be used for any database
 
-async function getAll(page = 1, pageSize = 30){ // This can be changed as needed
+async function getAll(page, pageSize){ // This can be changed as needed
     const col = await collection();
     const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
     const total = await col.countDocuments();
@@ -114,5 +114,5 @@ module.exports = {
     update,
     deleteItem,
     search,
-    seed
+    seed,
 };

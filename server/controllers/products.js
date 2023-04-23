@@ -36,6 +36,7 @@ router
     .get('/', (req, res, next) => {
         model.getAll(+req.query.page, +req.query.pageSize)
         .then( list => {
+            console.log({ list });
             const data = { data: list.items, total: list.total, isSuccess: true };
             res.send(data)
         }).catch(next);
@@ -122,14 +123,16 @@ router
             res.send(data)
         }).catch(next)
     })
-    
+
     .post('/seed', (req, res, next) => {
         model.seed()
             .then(x => {
                 const data = { data: x, isSuccess: true };
                 res.send(data)
             }).catch(next);
-    });
+    })
+    
+
     
     module.exports = router;
     // module.exports is an object that is available in every JS file in the Node application

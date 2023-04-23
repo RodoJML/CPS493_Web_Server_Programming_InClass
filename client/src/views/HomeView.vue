@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  // import Modal from '../components/Modal.vue'
+  import Modal from '../components/Modal.vue'
   import { ref } from 'vue';
   const isOpen = ref(false);
 </script>
@@ -15,7 +15,15 @@
     </p>
 
     <Modal v-model:is-open="isOpen" >
-      <h1 class="title">Some contente in the slot</h1>
+
+      <template #header>
+        <h1 class="title">Some content in the slot</h1>
+      </template>
+
+      <template #body1>
+        <p class="body">What is going on</p> 
+      </template>
+
     </Modal>
 
   </main>

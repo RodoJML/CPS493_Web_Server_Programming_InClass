@@ -17,7 +17,7 @@
         (<a @click="logout2()">logout</a>)
     </div>
     <div class="navbar-item" v-else>
-        <a class="button is-primary" @click="login">
+        <a class="button is-primary" @click="uselogin">
             <span class="icon">
                 <i class="fas fa-user"></i>
             </span>

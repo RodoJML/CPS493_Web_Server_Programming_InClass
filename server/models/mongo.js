@@ -2,7 +2,7 @@ const { MongoClient, ObjectID } = require('mongodb');
 // Object deconstructed from the mongodb module
 
 const url = process.env.MONGO_URL ?? "";
-const DB_Name = process.env.DB_NAME ?? 'chopify';
+const DB_Name = process.env.DB_NAME ?? 'test';
 
 const client = new MongoClient(url);
 
