@@ -13,6 +13,8 @@ const path = require('path')
 // 2. CONTROLLERS IMPORTS
 const products = require('./controllers/products')
 const jokes = require('./controllers/jokes');
+const users = require('./controllers/users');
+const { requireLogin, parseAuthorizationHeader } = require('./middleware/authorization');
 // Importing all corresponding controllers
 // Contains all exports from products
 
@@ -37,21 +39,23 @@ app
   .use(express.static(path.join(__dirname, '../client/dist')))
   // .use(express.static()) is a built-in middleware function in Express. It serves static files and is based on serve-static.
 
-  // THIS IS COURSE.... We are alright running scripts from other servers other than ours...
+  // THIS IS CORS.... We are alright running scripts from other servers other than ours...
   .use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
     // Anytime 
     next()
     // If you dont call next app will hang... 
   })
+  .use(parseAuthorizationHeader)
 
 // Actions
 app
   .get('/api/v1/', (req, res) => { res.send('Hello World! From Express') })
   .use('/api/v1/products', products)
   .use('/api/v1/jokes', jokes)
+  .use('/api/v1/users', users)
 
 // Catch all
 app

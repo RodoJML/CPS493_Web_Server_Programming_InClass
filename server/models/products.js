@@ -19,7 +19,7 @@ async function collection(){
 // }
 // look how each function was changed to a more general function so it can be used for any database
 
-async function getAll(page, pageSize){ // This can be changed as needed
+async function getAll(page = 1, pageSize = 30){ // This can be changed as needed
     const col = await collection();
     const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
     const total = await col.countDocuments();
@@ -32,7 +32,7 @@ async function getAll(page, pageSize){ // This can be changed as needed
 
 async function getById(id){
     const col = await collection();
-    const items = await col.findOne({ _id: ObjectId(id) });
+    const item = await col.findOne({ _id: ObjectId(id) });
     return item;
 }
 

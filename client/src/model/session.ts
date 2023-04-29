@@ -32,6 +32,7 @@ export function useSession() {
 }
 
 export function api(url: string, data?: any, method?: string, headers?: any) {
+   
    session.isLoading = true;
 
    return myFetch.api(url, data, method, headers)
