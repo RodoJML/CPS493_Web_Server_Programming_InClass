@@ -42,6 +42,14 @@ router
         }).catch(next);
     })
 
+    .get('/purchases', (req, res, next) => {
+        model.getAll(+req.query.page, +req.query.pageSize)
+            .then(list => {
+                const data = { data: list.items, total: list.total, isSuccess: true };
+                res.send(data)
+            }).catch(next);
+    })
+
     // .get('/search/:q', (req, res) => {
     //     const term = req.params.q;
     //     console.log({ term });
