@@ -20,6 +20,14 @@ GET http://localhost:3000/api/v1/products
 POST http://localhost:3000/api/v1/products/seed
 
 ###
+POST http://localhost:3000/api/v1/users/seed
+
+// --------------- Authentication test below... ------------------------------
+@jwt={{login.response.body.data.token}}
+@port=3000
+
+###
+# @name login
 POST http://localhost:3000/api/v1/users/login
 Content-Type: application/json
 
@@ -27,3 +35,12 @@ Content-Type: application/json
     "email": "john@doe.com",
     "password": "123456"
 }
+
+// The @name is required so the variable @jwt knows where to get the token from.
+
+###
+GET http://localhost:{{port}}/api/v1/products?page=1&pageSize=30
+Authorization: Bearer {{jwt}}
+
+// The authorization header is required to authenticate the request.
+// this is now required for all requests
