@@ -5,6 +5,10 @@
 // We will no longer use dummy data instead we will use the data from the MongoDB
 const jwt = require('jsonwebtoken');
 const { connect, ObjectId } = require('./mongo');
+
+const { env } = require('process');
+// this is to get the secret key from the .env file
+
 const COLLECTION_NAME = 'users';
 
 // Once connected to the DB all functions are async 
@@ -41,10 +45,10 @@ async function getById(id) {
 //     data.products.push(product);
 // }
 
-async function add(product) {
+async function add(user) {
     const col = await collection();
-    const result = await col.insertOne(product);
-    product._id = result.insertedId;
+    const result = await col.insertOne(user);
+    user._id = result.insertedId;
     return item;
 }
 
@@ -53,9 +57,9 @@ async function add(product) {
 //     data.products[index] = product;
 // }
 
-async function update(product) {
+async function update(user) {
     const col = await collection();
-    const result = await col.updateOne({ _id: ObjectId(product._id) }, { $set: product }, { returnDocument: 'after' });
+    const result = await col.updateOne({ _id: ObjectId(user._id) }, { $set: user }, { returnDocument: 'after' });
     return result.value;
 }
 
@@ -83,7 +87,7 @@ async function search(seachTerm, page = 1, pageSize = 30) {
     const query = {
         $or: [
             { name: { $regex: searchTerm, $options: 'i' } },
-            { email: { $regex: searchTerm, $options: 'i' } }
+            { email: { $regex: searchTerm, $options: 'i' } },
         ]
     }
 
@@ -96,7 +100,7 @@ async function search(seachTerm, page = 1, pageSize = 30) {
 // This function is to load data into the DB
 async function seed() {
     const col = await collection();
-    const result = await col.insertMany(data.products);
+    const result = await col.insertMany(data);
     return result.insertedCount;
 }
 
@@ -167,7 +171,8 @@ module.exports = {
     seed,
     generateTokenAsync,
     verifyTokenAsync,
-    login
+    login,
+    oAuthLogin
 };
 
 const data = [

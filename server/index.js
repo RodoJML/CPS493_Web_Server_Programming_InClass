@@ -45,6 +45,11 @@ app
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
     // Anytime 
+    if(req.method === 'OPTIONS') {
+      // If the request is an OPTIONS request, we send a 200 response
+      // because we are handling CORS in this middleware
+      res.sendStatus(200)
+    }
     next()
     // If you dont call next app will hang... 
   })
@@ -53,7 +58,7 @@ app
 // Actions
 app
   .get('/api/v1/', (req, res) => { res.send('Hello World! From Express') })
-  .use('/api/v1/products', products)
+  .use('/api/v1/products', requireLogin(), products)
   .use('/api/v1/jokes', jokes)
   .use('/api/v1/users', users)
 

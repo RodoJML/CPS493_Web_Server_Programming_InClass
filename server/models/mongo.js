@@ -1,8 +1,8 @@
-const { MongoClient, ObjectID } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 // Object deconstructed from the mongodb module
 
 const url = process.env.MONGO_URL ?? "";
-const DB_Name = process.env.DB_NAME ?? 'test';
+const DB_Name = process.env.DB_NAME ?? 'Shopify';
 
 const client = new MongoClient(url);
 
@@ -12,5 +12,5 @@ async function connect() {
 }
 
 module.exports = {
-    connect, ObjectID, DB_Name
+    connect, ObjectId, DB_Name
 }

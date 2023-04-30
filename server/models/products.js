@@ -55,7 +55,7 @@ async function add(product){
 
 async function update(product){
     const col = await collection();
-    const result = await col.updateOne({ _id: ObjectId(product._id) }, { $set: product }, { returnDocument: 'after' });
+    const result = await col.findOneAndUpdate({ _id: ObjectId(product._id) }, { $set: product }, { returnDocument: 'after' });
     return result.value;
 }
 

@@ -12,6 +12,16 @@ router
             }).catch(next);
     })
 
+    .get('/search/:q', requireLogin(true) ,(req, res, next) => {
+
+        model.search(req.params.q, +req.query.page, +req.query.pageSize)
+            .then(list => {
+                const data = { data: list.items, total: list.total, isSuccess: true };
+                res.send(data)
+            }).catch(next);
+        
+    })
+
     .get('/:id', requireLogin(true), (req, res, next) => {
         model.getById(req.params.id)
             .then(product => {
