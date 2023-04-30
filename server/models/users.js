@@ -23,7 +23,8 @@ async function collection() {
 // }
 // look how each function was changed to a more general function so it can be used for any database
 
-async function getAll(page, pageSize) { // This can be changed as needed
+async function getAll(page = 1, pageSize = 30) { // This can be changed as needed
+    // if no paramenter is received it will default to 1 and 30
     const col = await collection();
     const items = await col.find().skip((page - 1) * pageSize).limit(pageSize).toArray();
     const total = await col.countDocuments();
